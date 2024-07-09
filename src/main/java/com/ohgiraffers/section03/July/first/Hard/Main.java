@@ -10,7 +10,7 @@ public class Main {
          */
 
         // 여러 명의 학생 객체 생성
-        section03.July.first.Hard.Student student1 = new Student("준식", 28);
+        Student student1 = new Student("준식", 28);
         Student student2 = new Student("채영", 27);
         Student student3 = new Student("관응", 22);
         Student student4 = new Student("성균", 28);
