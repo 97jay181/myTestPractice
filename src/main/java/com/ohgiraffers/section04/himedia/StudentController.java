@@ -48,38 +48,38 @@ public class StudentController {
                     System.out.println("프로그램을 종료합니다."); // 프로그램 종료 메시지 출력
                     return; // 메소드 종료
                 default:
-                    System.out.println("잘못된 입력입니다. 다시 선택하세요."); // 잘못된 입력 메시지 출력
+                    System.out.println("잘못된 입력입니다. 다시 선택하세요.");     // 잘못된 입력 메시지 출력
             }
         }
     }
 
     // 학생 추가 메소드
     private void addStudent() {
-        Student student = view.readStudentInfo(); // 뷰를 통해 학생 정보 입력 받기
+        Student student = view.readStudentInfo();                       // 뷰를 통해 학생 정보 입력 받기
         students.add(student); // 학생 목록에 추가
-        System.out.println("학생 정보가 추가되었습니다."); // 추가 완료 메시지 출력
+        System.out.println("학생 정보가 추가되었습니다.");              // 추가 완료 메시지 출력
     }
 
     // 모든 학생 정보 출력 메소드
     private void displayAllStudents() {
-        view.printAllStudents(students); // 뷰를 통해 모든 학생 정보 출력
+        view.printAllStudents(students);                                // 뷰를 통해 모든 학생 정보 출력
     }
 
     // 특정 학생 정보 출력 메소드
     private void displayStudent() {
-        String name = view.readStringInput("검색할 학생의 이름: "); // 검색할 학생 이름 입력 받기
-        Student student = findStudentByName(name); // 이름으로 학생 검색
+        String name = view.readStringInput("검색할 학생의 이름: ");     // 검색할 학생 이름 입력 받기
+        Student student = findStudentByName(name);                      // 이름으로 학생 검색
 
         if (student != null) {
             view.printStudentDetails(student); // 학생 정보 출력
         } else {
-            System.out.println("해당 이름의 학생이 없습니다."); // 학생이 없을 경우 메시지 출력
+            System.out.println("해당 이름의 학생이 없습니다.");         // 학생이 없을 경우 메시지 출력
         }
     }
 
     // 학생 정보 수정 메소드
     private void modifyStudent() {
-        String name = view.readStringInput("수정할 학생의 이름: "); // 수정할 학생 이름 입력 받기
+        String name = view.readStringInput("수정할 학생의 이름: ");     // 수정할 학생 이름 입력 받기
         Student student = findStudentByName(name); // 이름으로 학생 검색
 
         if (student != null) {
@@ -94,9 +94,9 @@ public class StudentController {
             student.setEnglishScore(englishScore);
             student.setMathScore(mathScore);
 
-            System.out.println("학생 정보가 수정되었습니다."); // 수정 완료 메시지 출력
+            System.out.println("학생 정보가 수정되었습니다.");          // 수정 완료 메시지 출력
         } else {
-            System.out.println("해당 이름의 학생이 없습니다."); // 학생이 없을 경우 메시지 출력
+            System.out.println("해당 이름의 학생이 없습니다.");         // 학생이 없을 경우 메시지 출력
         }
     }
 
@@ -106,10 +106,10 @@ public class StudentController {
         Student student = findStudentByName(name);                      // 이름으로 학생 검색
 
         if (student != null) {
-            students.remove(student); // 학생 목록에서 삭제
-            System.out.println("학생 정보가 삭제되었습니다."); // 삭제 완료 메시지 출력
+            students.remove(student);                                   // 학생 목록에서 삭제
+            System.out.println("학생 정보가 삭제되었습니다.");          // 삭제 완료 메시지 출력
         } else {
-            System.out.println("해당 이름의 학생이 없습니다."); // 학생이 없을 경우 메시지 출력
+            System.out.println("해당 이름의 학생이 없습니다.");         // 학생이 없을 경우 메시지 출력
         }
     }
 
