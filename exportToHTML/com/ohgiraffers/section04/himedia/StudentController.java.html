@@ -1,0 +1,163 @@
+<html>
+<head>
+<title>StudentController.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ed864a;}
+.s1 { color: #ebebeb;}
+.s2 { color: #ed864a; font-weight: bold;}
+.s3 { color: #7ec3e6;}
+.s4 { color: #33ccff; font-weight: bold;}
+.s5 { color: #54b33e;}
+</style>
+</head>
+<body bgcolor="#131314">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+StudentController.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.ohgiraffers.section04.himedia</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">com.ohgiraffers.section04.himedia.Student</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com.ohgiraffers.section04.himedia.StudentView</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java.util.ArrayList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java.util.Comparator</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java.util.List</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">StudentController {</span>
+    <span class="s0">private </span><span class="s1">List&lt;Student&gt; students</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">StudentView view</span><span class="s2">;</span>
+
+    <span class="s3">// 생성자</span>
+    <span class="s0">public </span><span class="s1">StudentController() {</span>
+        <span class="s0">this</span><span class="s1">.students = </span><span class="s0">new </span><span class="s1">ArrayList&lt;&gt;()</span><span class="s2">; </span><span class="s3">// 학생 목록 초기화</span>
+        <span class="s0">this</span><span class="s1">.view = </span><span class="s0">new </span><span class="s1">StudentView()</span><span class="s2">; </span><span class="s3">// 뷰 초기화</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 프로그램 시작 메소드</span>
+    <span class="s0">public void </span><span class="s1">start() {</span>
+        <span class="s0">while </span><span class="s1">(</span><span class="s0">true</span><span class="s1">) {</span>
+            <span class="s0">int </span><span class="s1">choice = view.printMenuAndGetChoice()</span><span class="s2">; </span><span class="s3">// 메뉴 출력 및 선택</span>
+
+            <span class="s0">switch </span><span class="s1">(choice) {</span>
+                <span class="s0">case </span><span class="s4">1</span><span class="s1">:</span>
+                    <span class="s1">addStudent()</span><span class="s2">; </span><span class="s3">// 학생 추가 메소드 호출</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">case </span><span class="s4">2</span><span class="s1">:</span>
+                    <span class="s1">displayAllStudents()</span><span class="s2">; </span><span class="s3">// 모든 학생 정보 출력 메소드 호출</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">case </span><span class="s4">3</span><span class="s1">:</span>
+                    <span class="s1">displayStudent()</span><span class="s2">; </span><span class="s3">// 특정 학생 정보 출력 메소드 호출</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">case </span><span class="s4">4</span><span class="s1">:</span>
+                    <span class="s1">modifyStudent()</span><span class="s2">; </span><span class="s3">// 학생 정보 수정 메소드 호출</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">case </span><span class="s4">5</span><span class="s1">:</span>
+                    <span class="s1">deleteStudent()</span><span class="s2">; </span><span class="s3">// 학생 정보 삭제 메소드 호출</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">case </span><span class="s4">6</span><span class="s1">:</span>
+                    <span class="s1">displayAverageScores()</span><span class="s2">; </span><span class="s3">// 평균 점수 출력 메소드 호출</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">case </span><span class="s4">7</span><span class="s1">:</span>
+                    <span class="s1">displayStudentRanks()</span><span class="s2">; </span><span class="s3">// 학생 등수 출력 메소드 호출</span>
+                    <span class="s0">break</span><span class="s2">;</span>
+                <span class="s0">case </span><span class="s4">8</span><span class="s1">:</span>
+                    <span class="s1">System.out.println(</span><span class="s5">&quot;프로그램을 종료합니다.&quot;</span><span class="s1">)</span><span class="s2">; </span><span class="s3">// 프로그램 종료 메시지 출력</span>
+                    <span class="s0">return</span><span class="s2">; </span><span class="s3">// 메소드 종료</span>
+                <span class="s0">default</span><span class="s1">:</span>
+                    <span class="s1">System.out.println(</span><span class="s5">&quot;잘못된 입력입니다. 다시 선택하세요.&quot;</span><span class="s1">)</span><span class="s2">;     </span><span class="s3">// 잘못된 입력 메시지 출력</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 학생 추가 메소드</span>
+    <span class="s0">private void </span><span class="s1">addStudent() {</span>
+        <span class="s1">Student student = view.readStudentInfo()</span><span class="s2">;                       </span><span class="s3">// 뷰를 통해 학생 정보 입력 받기</span>
+        <span class="s1">students.add(student)</span><span class="s2">; </span><span class="s3">// 학생 목록에 추가</span>
+        <span class="s1">System.out.println(</span><span class="s5">&quot;학생 정보가 추가되었습니다.&quot;</span><span class="s1">)</span><span class="s2">;              </span><span class="s3">// 추가 완료 메시지 출력</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 모든 학생 정보 출력 메소드</span>
+    <span class="s0">private void </span><span class="s1">displayAllStudents() {</span>
+        <span class="s1">view.printAllStudents(students)</span><span class="s2">;                                </span><span class="s3">// 뷰를 통해 모든 학생 정보 출력</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 특정 학생 정보 출력 메소드</span>
+    <span class="s0">private void </span><span class="s1">displayStudent() {</span>
+        <span class="s1">String name = view.readStringInput(</span><span class="s5">&quot;검색할 학생의 이름: &quot;</span><span class="s1">)</span><span class="s2">;     </span><span class="s3">// 검색할 학생 이름 입력 받기</span>
+        <span class="s1">Student student = findStudentByName(name)</span><span class="s2">;                      </span><span class="s3">// 이름으로 학생 검색</span>
+
+        <span class="s0">if </span><span class="s1">(student != </span><span class="s0">null</span><span class="s1">) {</span>
+            <span class="s1">view.printStudentDetails(student)</span><span class="s2">; </span><span class="s3">// 학생 정보 출력</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s1">System.out.println(</span><span class="s5">&quot;해당 이름의 학생이 없습니다.&quot;</span><span class="s1">)</span><span class="s2">;         </span><span class="s3">// 학생이 없을 경우 메시지 출력</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 학생 정보 수정 메소드</span>
+    <span class="s0">private void </span><span class="s1">modifyStudent() {</span>
+        <span class="s1">String name = view.readStringInput(</span><span class="s5">&quot;수정할 학생의 이름: &quot;</span><span class="s1">)</span><span class="s2">;     </span><span class="s3">// 수정할 학생 이름 입력 받기</span>
+        <span class="s1">Student student = findStudentByName(name)</span><span class="s2">; </span><span class="s3">// 이름으로 학생 검색</span>
+
+        <span class="s0">if </span><span class="s1">(student != </span><span class="s0">null</span><span class="s1">) {</span>
+            <span class="s1">String newName = view.readStringInput(</span><span class="s5">&quot;새 이름: &quot;</span><span class="s1">)</span><span class="s2">;        </span><span class="s3">// 새 이름 입력 받기</span>
+            <span class="s0">int </span><span class="s1">koreanScore = view.readScore(</span><span class="s5">&quot;새 국어 점수: &quot;</span><span class="s1">)</span><span class="s2">;        </span><span class="s3">// 새 국어 점수 입력 받기</span>
+            <span class="s0">int </span><span class="s1">englishScore = view.readScore(</span><span class="s5">&quot;새 영어 점수: &quot;</span><span class="s1">)</span><span class="s2">;       </span><span class="s3">// 새 영어 점수 입력 받기</span>
+            <span class="s0">int </span><span class="s1">mathScore = view.readScore(</span><span class="s5">&quot;새 수학 점수: &quot;</span><span class="s1">)</span><span class="s2">;          </span><span class="s3">// 새 수학 점수 입력 받기</span>
+
+            <span class="s3">// 입력 받은 정보로 학생 정보 수정</span>
+            <span class="s1">student.setName(newName)</span><span class="s2">;</span>
+            <span class="s1">student.setKoreanScore(koreanScore)</span><span class="s2">;</span>
+            <span class="s1">student.setEnglishScore(englishScore)</span><span class="s2">;</span>
+            <span class="s1">student.setMathScore(mathScore)</span><span class="s2">;</span>
+
+            <span class="s1">System.out.println(</span><span class="s5">&quot;학생 정보가 수정되었습니다.&quot;</span><span class="s1">)</span><span class="s2">;          </span><span class="s3">// 수정 완료 메시지 출력</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s1">System.out.println(</span><span class="s5">&quot;해당 이름의 학생이 없습니다.&quot;</span><span class="s1">)</span><span class="s2">;         </span><span class="s3">// 학생이 없을 경우 메시지 출력</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 학생 정보 삭제 메소드</span>
+    <span class="s0">private void </span><span class="s1">deleteStudent() {</span>
+        <span class="s1">String name = view.readStringInput(</span><span class="s5">&quot;삭제할 학생의 이름: &quot;</span><span class="s1">)</span><span class="s2">;     </span><span class="s3">// 삭제할 학생 이름 입력 받기</span>
+        <span class="s1">Student student = findStudentByName(name)</span><span class="s2">;                      </span><span class="s3">// 이름으로 학생 검색</span>
+
+        <span class="s0">if </span><span class="s1">(student != </span><span class="s0">null</span><span class="s1">) {</span>
+            <span class="s1">students.remove(student)</span><span class="s2">;                                   </span><span class="s3">// 학생 목록에서 삭제</span>
+            <span class="s1">System.out.println(</span><span class="s5">&quot;학생 정보가 삭제되었습니다.&quot;</span><span class="s1">)</span><span class="s2">;          </span><span class="s3">// 삭제 완료 메시지 출력</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s1">System.out.println(</span><span class="s5">&quot;해당 이름의 학생이 없습니다.&quot;</span><span class="s1">)</span><span class="s2">;         </span><span class="s3">// 학생이 없을 경우 메시지 출력</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 이름으로 학생 검색 메소드</span>
+    <span class="s0">private </span><span class="s1">Student findStudentByName(String name) {</span>
+        <span class="s0">for </span><span class="s1">(Student student : students) {</span>
+            <span class="s0">if </span><span class="s1">(student.getName().equalsIgnoreCase(name)) {</span>
+                <span class="s0">return </span><span class="s1">student</span><span class="s2">; </span><span class="s3">// 이름이 일치하는 학생 반환</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+        <span class="s0">return null</span><span class="s2">; </span><span class="s3">// 일치하는 학생이 없을 경우 null 반환</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 모든 학생의 평균 점수 출력 메소드</span>
+    <span class="s0">private void </span><span class="s1">displayAverageScores() {</span>
+        <span class="s0">for </span><span class="s1">(Student student : students) {</span>
+            <span class="s0">double </span><span class="s1">average = (student.getKoreanScore() + student.getEnglishScore() + student.getMathScore()) / </span><span class="s4">3.0</span><span class="s2">; </span><span class="s3">// 평균 계산</span>
+            <span class="s1">view.printAverageScore(student</span><span class="s2">, </span><span class="s1">average)</span><span class="s2">; </span><span class="s3">// 평균 점수 출력</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 학생 등수 출력 메소드</span>
+    <span class="s0">private void </span><span class="s1">displayStudentRanks() {</span>
+        <span class="s1">students.sort(Comparator.comparingInt(Student::getTotalScore).reversed())</span><span class="s2">; </span><span class="s3">// 학생들을 총점 역순으로 정렬</span>
+
+        <span class="s0">for </span><span class="s1">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i &lt; students.size()</span><span class="s2">; </span><span class="s1">i++) {</span>
+            <span class="s1">view.printStudentRank(i + </span><span class="s4">1</span><span class="s2">, </span><span class="s1">students.get(i))</span><span class="s2">; </span><span class="s3">// 등수 출력</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

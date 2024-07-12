@@ -1,0 +1,80 @@
+<html>
+<head>
+<title>Student.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ed864a;}
+.s1 { color: #ebebeb;}
+.s2 { color: #ed864a; font-weight: bold;}
+.s3 { color: #7ec3e6;}
+.s4 { color: #54b33e;}
+</style>
+</head>
+<body bgcolor="#131314">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Student.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.ohgiraffers.section04.himedia</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">Student {</span>
+    <span class="s0">private </span><span class="s1">String name</span><span class="s2">;</span>
+    <span class="s0">private int </span><span class="s1">koreanScore</span><span class="s2">;</span>
+    <span class="s0">private int </span><span class="s1">englishScore</span><span class="s2">;</span>
+    <span class="s0">private int </span><span class="s1">mathScore</span><span class="s2">;</span>
+
+    <span class="s3">// 학생 생성자</span>
+    <span class="s0">public </span><span class="s1">Student(String name</span><span class="s2">, </span><span class="s0">int </span><span class="s1">koreanScore</span><span class="s2">, </span><span class="s0">int </span><span class="s1">englishScore</span><span class="s2">, </span><span class="s0">int </span><span class="s1">mathScore) {</span>
+        <span class="s0">this</span><span class="s1">.name = name</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s1">.koreanScore = koreanScore</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s1">.englishScore = englishScore</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s1">.mathScore = mathScore</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// Getter 및 Setter 메소드들</span>
+    <span class="s0">public </span><span class="s1">String getName() {</span>
+        <span class="s0">return </span><span class="s1">name</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">setName(String name) {</span>
+        <span class="s0">this</span><span class="s1">.name = name</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public int </span><span class="s1">getKoreanScore() {</span>
+        <span class="s0">return </span><span class="s1">koreanScore</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">setKoreanScore(</span><span class="s0">int </span><span class="s1">koreanScore) {</span>
+        <span class="s0">this</span><span class="s1">.koreanScore = koreanScore</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public int </span><span class="s1">getEnglishScore() {</span>
+        <span class="s0">return </span><span class="s1">englishScore</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">setEnglishScore(</span><span class="s0">int </span><span class="s1">englishScore) {</span>
+        <span class="s0">this</span><span class="s1">.englishScore = englishScore</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public int </span><span class="s1">getMathScore() {</span>
+        <span class="s0">return </span><span class="s1">mathScore</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s0">public void </span><span class="s1">setMathScore(</span><span class="s0">int </span><span class="s1">mathScore) {</span>
+        <span class="s0">this</span><span class="s1">.mathScore = mathScore</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 총점 계산 메소드</span>
+    <span class="s0">public int </span><span class="s1">getTotalScore() {</span>
+        <span class="s0">return </span><span class="s1">koreanScore + englishScore + mathScore</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 학생 정보를 문자열로 반환하는 메소드</span>
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">String toString() {</span>
+        <span class="s0">return </span><span class="s4">&quot;이름: &quot; </span><span class="s1">+ name + </span><span class="s4">&quot;, 국어: &quot; </span><span class="s1">+ koreanScore + </span><span class="s4">&quot;, 영어: &quot; </span><span class="s1">+ englishScore + </span><span class="s4">&quot;, 수학: &quot; </span><span class="s1">+ mathScore</span><span class="s2">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

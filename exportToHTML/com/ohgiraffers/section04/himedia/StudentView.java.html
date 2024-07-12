@@ -1,0 +1,114 @@
+<html>
+<head>
+<title>StudentView.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #ed864a;}
+.s1 { color: #ebebeb;}
+.s2 { color: #ed864a; font-weight: bold;}
+.s3 { color: #7ec3e6;}
+.s4 { color: #54b33e;}
+.s5 { color: #33ccff; font-weight: bold;}
+</style>
+</head>
+<body bgcolor="#131314">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+StudentView.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">com.ohgiraffers.section04.himedia</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">com.ohgiraffers.section04.himedia.Student</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java.util.List</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java.util.Scanner</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">StudentView {</span>
+    <span class="s0">private </span><span class="s1">Scanner sc</span><span class="s2">;</span>
+
+    <span class="s3">// 생성자</span>
+    <span class="s0">public </span><span class="s1">StudentView() {</span>
+        <span class="s0">this</span><span class="s1">.sc = </span><span class="s0">new </span><span class="s1">Scanner(System.in)</span><span class="s2">; </span><span class="s3">// 입력을 위한 스캐너 초기화</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 메뉴 출력 및 선택 메소드</span>
+    <span class="s0">public int </span><span class="s1">printMenuAndGetChoice() {</span>
+        <span class="s1">System.out.println(</span><span class="s4">&quot;=========== 메뉴 대령이오 ===========================&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">System.out.println(</span><span class="s4">&quot;1. 학생 정보 입력&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">System.out.println(</span><span class="s4">&quot;2. 전체 학생 정보 출력&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">System.out.println(</span><span class="s4">&quot;3. 특정 학생 정보 출력&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">System.out.println(</span><span class="s4">&quot;4. 학생 정보 수정&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">System.out.println(</span><span class="s4">&quot;5. 학생 정보 삭제&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">System.out.println(</span><span class="s4">&quot;6. 학생 평균 점수 출력&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">System.out.println(</span><span class="s4">&quot;7. 학생 등수 출력&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">System.out.println(</span><span class="s4">&quot;8. 종료&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">System.out.println(</span><span class="s4">&quot;===============================================&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">System.out.print(</span><span class="s4">&quot;★ 메뉴를 선택하장~: &quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s0">return </span><span class="s1">sc.nextInt()</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 학생 정보 입력 메소드</span>
+    <span class="s0">public </span><span class="s1">Student readStudentInfo() {</span>
+        <span class="s1">sc.nextLine()</span><span class="s2">; </span><span class="s3">// 버퍼 비우기</span>
+        <span class="s1">System.out.print(</span><span class="s4">&quot;이름: &quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">String name = sc.nextLine()</span><span class="s2">;</span>
+        <span class="s0">int </span><span class="s1">koreanScore = readScore(</span><span class="s4">&quot;국어 점수: &quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s0">int </span><span class="s1">englishScore = readScore(</span><span class="s4">&quot;영어 점수: &quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s0">int </span><span class="s1">mathScore = readScore(</span><span class="s4">&quot;수학 점수: &quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s0">return new </span><span class="s1">Student(name</span><span class="s2">, </span><span class="s1">koreanScore</span><span class="s2">, </span><span class="s1">englishScore</span><span class="s2">, </span><span class="s1">mathScore)</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 점수 입력 유틸리티 메소드</span>
+    <span class="s0">int </span><span class="s1">readScore(String message) {</span>
+        <span class="s0">int </span><span class="s1">score</span><span class="s2">;</span>
+        <span class="s0">do </span><span class="s1">{</span>
+            <span class="s1">System.out.print(message)</span><span class="s2">;</span>
+            <span class="s1">score = sc.nextInt()</span><span class="s2">;</span>
+            <span class="s0">if </span><span class="s1">(score &lt; </span><span class="s5">0 </span><span class="s1">|| score &gt; </span><span class="s5">100</span><span class="s1">) {</span>
+                <span class="s1">System.out.println(</span><span class="s4">&quot;점수는 0에서 100 사이여야 합니다. 다시 입력하세요.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">} </span><span class="s0">while </span><span class="s1">(score &lt; </span><span class="s5">0 </span><span class="s1">|| score &gt; </span><span class="s5">100</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s0">return </span><span class="s1">score</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 문자열 입력 메소드</span>
+    <span class="s0">public </span><span class="s1">String readStringInput(String message) {</span>
+        <span class="s1">sc.nextLine()</span><span class="s2">; </span><span class="s3">// 버퍼 비우기</span>
+        <span class="s1">System.out.print(message)</span><span class="s2">;</span>
+        <span class="s0">return </span><span class="s1">sc.nextLine()</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 전체 학생 정보 출력 메소드</span>
+    <span class="s0">public void </span><span class="s1">printAllStudents(List&lt;Student&gt; students) {</span>
+        <span class="s0">if </span><span class="s1">(students.isEmpty()) {</span>
+            <span class="s1">System.out.println(</span><span class="s4">&quot;등록된 학생이 없습니다.&quot;</span><span class="s1">)</span><span class="s2">;</span>
+        <span class="s1">} </span><span class="s0">else </span><span class="s1">{</span>
+            <span class="s0">for </span><span class="s1">(Student student : students) {</span>
+                <span class="s1">System.out.println(student)</span><span class="s2">;</span>
+            <span class="s1">}</span>
+        <span class="s1">}</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 특정 학생 정보 출력 메소드</span>
+    <span class="s0">public void </span><span class="s1">printStudentDetails(Student student) {</span>
+        <span class="s1">System.out.println(student)</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 평균 점수 출력 메소드</span>
+    <span class="s0">public void </span><span class="s1">printAverageScore(Student student</span><span class="s2">, </span><span class="s0">double </span><span class="s1">average) {</span>
+        <span class="s1">System.out.println(student.getName() + </span><span class="s4">&quot;의 평균 점수: &quot; </span><span class="s1">+ average)</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 학생 등수 출력 메소드</span>
+    <span class="s0">public void </span><span class="s1">printStudentRank(</span><span class="s0">int </span><span class="s1">rank</span><span class="s2">, </span><span class="s1">Student student) {</span>
+        <span class="s1">System.out.println(rank + </span><span class="s4">&quot;등: &quot; </span><span class="s1">+ student.getName() + </span><span class="s4">&quot; -&gt; 총점: &quot; </span><span class="s1">+ student.getTotalScore())</span><span class="s2">;</span>
+    <span class="s1">}</span>
+
+    <span class="s3">// 메시지 출력 메소드</span>
+    <span class="s0">public void </span><span class="s1">printMessage(String message) {</span>
+        <span class="s1">System.out.println(message)</span><span class="s2">;</span>
+    <span class="s1">}</span>
+<span class="s1">}</span></pre>
+</body>
+</html>

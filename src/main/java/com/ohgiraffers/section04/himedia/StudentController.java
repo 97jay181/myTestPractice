@@ -56,7 +56,7 @@ public class StudentController {
     // 학생 추가 메소드
     private void addStudent() {
         Student student = view.readStudentInfo();                       // 뷰를 통해 학생 정보 입력 받기
-        students.add(student); // 학생 목록에 추가
+        students.add(student);                                          // 학생 목록에 추가
         System.out.println("학생 정보가 추가되었습니다.");              // 추가 완료 메시지 출력
     }
 
@@ -80,7 +80,7 @@ public class StudentController {
     // 학생 정보 수정 메소드
     private void modifyStudent() {
         String name = view.readStringInput("수정할 학생의 이름: ");     // 수정할 학생 이름 입력 받기
-        Student student = findStudentByName(name); // 이름으로 학생 검색
+        Student student = findStudentByName(name);                      // 이름으로 학생 검색
 
         if (student != null) {
             String newName = view.readStringInput("새 이름: ");        // 새 이름 입력 받기
