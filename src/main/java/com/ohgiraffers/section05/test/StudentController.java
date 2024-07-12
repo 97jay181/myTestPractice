@@ -10,27 +10,27 @@ public class StudentController {
 
     // 컨트롤러 객체를 만들 때 사용하는 생성자 메서드
     public StudentController() {
-        this.students = new ArrayList<>();  // 학생 목록을 초기화합니다.
-        this.view = new StudentView();  // 뷰 객체를 만듭니다.
+        this.students = new ArrayList<>();  // 학생 목록을 초기화.
+        this.view = new StudentView();      // 뷰 객체를 만듦.
     }
 
     // 프로그램을 시작하는 메서드
     public void start() {
-        while (true) {  // 프로그램이 종료될 때까지 반복합니다.
-            int choice = view.printMenuAndGetChoice();  // 메뉴를 보여주고 사용자의 선택을 받습니다.
+        while (true) {                                  // 프로그램이 종료될 때까지 반복.
+            int choice = view.printMenuAndGetChoice();  // 메뉴를 보여주고 사용자의 선택을 받음.
 
-            switch (choice) {  // 사용자의 선택에 따라
+            switch (choice) {                           // 사용자의 선택에 따름
                 case 1:
-                    addStudent();  // 학생을 추가합니다.
+                    addStudent();                       // 학생정보 추가
                     break;
                 case 2:
-                    displayAllStudents();  // 모든 학생 정보를 출력합니다.
+                    displayAllStudents();               // 모든 학생 정보를 출력.
                     break;
                 case 3:
-                    displayStudent();  // 특정 학생 정보를 출력합니다.
+                    displayStudent();                   // 특정 학생 정보를 출력합니다.
                     break;
                 case 4:
-                    modifyStudent();  // 학생 정보를 수정합니다.
+                    modifyStudent();                    // 학생 정보를 수정합니다.
                     break;
                 case 5:
                     deleteStudent();  // 학생 정보를 삭제합니다.
